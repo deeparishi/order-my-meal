@@ -15,6 +15,7 @@ import java.util.List;
 public interface UserMapper {
 
     @Mapping(source = "emailId", target = "emailId")
+    @Mapping(source = "role", target = "role")
     User toEntity(AddUserRequest request);
 
     UserResponse toResponse(User user);

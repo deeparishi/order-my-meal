@@ -12,6 +12,7 @@ public class UserResponse {
     String username;
     String password;
     List<AddressResponse> address;
+    Enum.Role role;
     Enum.UserType userType;
     String mobileNumber;
     String emailId;

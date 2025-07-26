@@ -16,6 +16,7 @@ public class AddUserRequest {
     String username;
     String password;
     List<AddressRequest> address;
+    Enum.Role role;
     Enum.UserType userType;
     String mobileNumber;
 }
