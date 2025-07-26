@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:33006/food_app_base?createDatabaseIfNotExist=true
+    username: root
+    password: root
+server:
+  port: 8002
+  servlet:
+    context-path: /idp
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+
+loki:
+  url: http://localhost:3100/loki/api/v1/push

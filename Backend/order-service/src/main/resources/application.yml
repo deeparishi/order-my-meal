@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: order-service
+  profiles:
+    active: local
+
+management:
+  endpoints:
+    enabled: true
+    web:
+      exposure:
+        include: health,info,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+feign:
+  client:
+    config:
+      api-gateway:
+        connectTimeout: 5000
+        readTimeout: 5000

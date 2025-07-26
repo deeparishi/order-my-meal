@@ -1,0 +1,58 @@
+spring:
+  profiles:
+    active: local
+  application:
+    name: idp-service
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+        cache:
+          use_second_level_cache: true
+          use_query_cache: true
+          region.factory_class: org.hibernate.cache.jcache.JCacheRegionFactory
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  logging:
+    level:
+      org.hibernate.cache.spi: DEBUG
+  cloud:
+    config:
+      enabled: false
+
+server:
+  port: 9090
+
+food:
+  app:
+    secret-key: 0ad786109c5004850c9e589073e059f15f6e05a4790d1dc2f0aaaa138ae0f511acb0c9801b88c8bed2fe5a36f4c1bda874b53751a6a0f21ab93c8b942d687dfb
+    expiration: 3000000
+    refresh-expiration: 300000
+    reset-token-expiration: 20000
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    enabled: true
+    web:
+      exposure:
+        include: health,info,prometheus
+  metrics:
+    prometheus:
+      metrics:
+        export:
+          enabled: true
+
+feign:
+  client:
+    config:
+      api-gateway:
+        connectTimeout: 5000
+        readTimeout: 5000

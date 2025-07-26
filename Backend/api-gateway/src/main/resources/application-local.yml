@@ -1,0 +1,26 @@
+
+server:
+  port: 8001
+  servlet:
+    context-path: /gateway
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+
+idp:
+  service:
+    base-url: http://localhost:8002/idp
+    authenticate-url: /v1/auth/authenticate-token
+
+loki:
+  url: http://localhost:3100/loki/api/v1/push

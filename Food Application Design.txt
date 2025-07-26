@@ -1,0 +1,58 @@
+
+Auth Service / API Gateway
+
+Food order
+view restaurants
+View available foods
+order foods
+
+
+Order Service
+Receives food orders.
+Accepts/rejects based on availability.
+
+
+Payment Service
+Processes payments (mocked or real provider).
+Retries failed payments with exponential backoff.
+Uses Circuit Breaker around external gateway.
+Emits: payment.success, payment.failed.
+
+Delivery Service
+Assigns a delivery partner.
+Tracks delivery status.
+Emits: delivery.started, delivery.completed
+
+
+API Gateway 8001     -> Entry Point runs on 8001 with /gateway context
+Eureka Server 8000   -> Service Registry for all service runs on 8000
+IDP Service 8002     -> Auth service for all runs on 8002 with /idp context`
+Order Service 8005   -> Orchestator for restaurant/payment/delivery runs on 8005 with /order
+Payment Service 8004      -> Payment service runs on 8004 with /payment
+Restaurant service 8003 	  -> Restaurant service runs on 8003 with /restaurant path
+
+
+
+
+
+
+
+
+
+Kafka topics are below
+
+order-service to be created:
+payment.initiate
+restaurant.initiate
+delivery.initiate
+
+delivery-service to be created:
+job.events
+
+payment-service to be created:
+payment.processing
+payment.success
+payment.failed
+
+restaurant-service to be created:
+restaurant.events

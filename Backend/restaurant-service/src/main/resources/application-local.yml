@@ -1,0 +1,52 @@
+spring:
+  data:
+    mongodb:
+      database: restaurant
+      host: localhost
+      port: 27017
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: restaurant-group
+      auto-offset-reset: earliest
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+        spring.json.trusted.packages: "*"
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: com.foodapp.common.dto.request.RestaurantRequest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    listener:
+      missing-topics-fatal: false
+
+restaurant:
+  producer:
+    topic:
+      name: restaurant.events
+      partitions: 3
+      replication-factor: 1
+  consumer:
+    topic:
+      initiate: restaurant.initiate
+
+
+server:
+  port: 8003
+  servlet:
+    context-path: /restaurant
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+
+loki:
+  url: http://localhost:3100/loki/api/v1/push
