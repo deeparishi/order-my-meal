@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="eurekaserver" />
         <module name="eureka-server" />
+        <module name="configserver" />
       </profile>
       <profile name="Annotation profile for payment-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -40,6 +41,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="apigateway" options="-parameters" />
       <module name="common" options="-parameters" />
+      <module name="configserver" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
       <module name="idp-service" options="-parameters" />
