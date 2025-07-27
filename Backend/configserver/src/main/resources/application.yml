@@ -1,30 +1,9 @@
-server:
-  port: 8078
 
 spring:
   application:
     name: config-server
   profiles:
     active: local
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/deeparishi/order-my-meal-config-repo.git
-          username: deeparishi
-          password:
-          default-label: main
-          clone-on-start: true
-          force-pull: true
-
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://localhost:8000/eureka/
 
 management:
   endpoints:
