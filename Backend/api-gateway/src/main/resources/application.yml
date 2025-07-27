@@ -3,6 +3,8 @@ spring:
     active: local
   application:
     name: api-gateway
+  config:
+    import: optional:configserver:http://localhost:8078
   cloud:
     gateway:
       server:
@@ -37,18 +39,3 @@ resilience4j.ratelimiter:
       timeoutDuration: 1000
       limitRefreshPeriod: 5000
       limitForPeriod: 1
-
-management:
-  endpoints:
-    enabled: true
-    web:
-      exposure:
-        include: health,info,prometheus
-  metrics:
-    prometheus:
-      metrics:
-        export:
-          enabled: true
-
-logging:
-  config: classpath:logback-spring.xml
