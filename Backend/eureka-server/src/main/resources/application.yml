@@ -1,32 +1,7 @@
 spring:
   application:
     name: eureka-server
-
-server:
-  port: 8000
-
-eureka:
-  instance:
-    prefer-ip-address: true
-    hostname: localhost
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
-    service-url:
-      defaultZone: http://localhost:8000/eureka/
-  server:
-    enable-self-preservation: false
-
-management:
-  endpoints:
-    enabled: true
-    web:
-      exposure:
-        include: health,info,prometheus
-  metrics:
-    export:
-      prometheus:
-        enabled: true
-
-loki:
-  url: http://localhost:3100/loki/api/v1/push
+  profiles:
+    active: local
+  config:
+    import: optional:configserver:http://localhost:8078
